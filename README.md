@@ -13,5 +13,7 @@ Here is the curriculum for the first five weeks.
 | 3 | Linear regression | Linear classification |
 | 4 | Linear/logistic classification | Neural networks |
 | 5 | Neural networks | Backpropagation |
+| 10 | Large Vision Model Demo | Large Vision Model |
+| 11 | Large Language Model Demo | Large Language Model |
 
 More to come!
