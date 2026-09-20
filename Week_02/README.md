@@ -8,7 +8,7 @@ The Week 2 lab is an introduction to PyTorch. Work through the three notebooks i
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/semtm0051/2026_27/blob/main/Week_02/Lab/Week_02_intro_to_pytorch.ipynb)
 
-### 2. Python classes, part 2
+### 2. Python classes, part 2: preparing for PyTorch
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/semtm0051/2026_27/blob/main/Week_02/Lab/Week_02_python_classes_part2.ipynb)
 
