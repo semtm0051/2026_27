@@ -29,4 +29,4 @@ In 2026/27 this unit is taught by:
 - Jingjing Deng
 - Roberto Colomboni
 
-There arw labs on Thursdays at 10-12 and 14-16 for groups one and two in Sloane Robinson 1.610 and a lecture on Fridays at 9 in Sloane Robinson 0.401 (Bill Brown Forum).
+There are labs on Thursdays at 10-12 and 14-16 for groups one and two in Sloane Robinson 1.610 and a lecture on Fridays at 9 in Sloane Robinson 0.401 (Bill Brown Forum).
