@@ -21,7 +21,7 @@ for eta in (0.001, 0.002):
         probabilities = [1.0 / (1.0 + math.exp(-s)) for s in scores]
         loss = sum(max(s, 0.0) + math.log1p(math.exp(-abs(s))) - row[3] * s
                    for s, row in zip(scores, observations))
-        mistakes = sum(int(s >= 0.0) != row[3]
+        mistakes = sum(int(s > 0.0) != row[3]
                        for s, row in zip(scores, observations))
         print(f'{eta},{t},{theta[0]:.12f},{theta[1]:.12f},'
               f'{theta[2]:.12f},{loss:.12f},{mistakes}')

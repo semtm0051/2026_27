@@ -2,15 +2,17 @@
 
 ## Supporting data and code
 
-These files accompany the Lecture 3 slides and notes on linear classification.
-They let you reproduce the numerical results in the binary classification
-examples and compare gradient descent with two learning rates.
+These files reproduce the 100-observation binary classification examples and
+the gradient-descent step-size comparison in the Lecture 3 slides. The notes use
+separate examples, including a different set of coordinates for the geometric
+illustrations and a seven-observation dataset for the worked gradient-descent
+calculation.
 
 ### Files
 
 | File | Contents |
 | --- | --- |
-| `Week_03_classification_distinct.csv` | The 100 observations used in the binary classification plots. |
+| `Week_03_classification_distinct.csv` | The 100 observations used in the binary classification plots in the slides. |
 | `Week_03_GD_step_sizes.csv` | Reference results for iterations 0–20 with each learning rate, including coefficients, loss, mistake count and gradient. |
 | `Week_03_compare_step_sizes.py` | A Python 3 script that recalculates both runs from the observation CSV. No additional packages are required. |
 
@@ -57,7 +59,7 @@ Both runs use the following conventions:
 - Design matrix: each row of `X` is `(1, x1, x2)`.
 - Score: `s = b + w1*x1 + w2*x2`.
 - Predicted probability of class 1: `p = 1 / (1 + exp(-s))`.
-- Predicted label: class 1 when `s >= 0`, otherwise class 0.
+- Predicted label: class 1 when `s > 0`, otherwise class 0 (including a tie).
 - Objective: the **sum** of the 100 logistic losses, using natural logarithms.
 - Update: `theta_new = theta - eta * X^T * (p - y)`.
 - Learning rates: `eta = 0.001` and `eta = 0.002`.
