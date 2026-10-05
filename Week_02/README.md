@@ -20,6 +20,8 @@ The Week 2 lab is an introduction to PyTorch. Work through the three notebooks i
 
 [Linear regression](Notes/Week_02%20-%20Linear%20Regression.pdf)
 
+[Solutions to the exercises](Notes/Solutions_to_the_exercises.pdf)
+
 ## Lecture slides
 
 [Linear regression — slides](Slides/Week_02%20-%20Slides.pptx)
