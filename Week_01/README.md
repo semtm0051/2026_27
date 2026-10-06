@@ -20,4 +20,4 @@ The Week 1 lab is a Python refresher. Work through the two notebooks in this ord
 
 ## Lecture slides
 
-[Mathematical preliminaries — slides](Slides/Week_01%20-%20Slides.pptx)
+[Mathematical preliminaries — slides](Slides/Week_01%20-%20Slides.pptx) · [PDF](Slides/Week_01%20-%20Slides.pdf)
