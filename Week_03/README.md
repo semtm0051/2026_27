@@ -14,4 +14,4 @@ The Week 3 lab applies PyTorch to linear regression.
 
 ## Lecture slides
 
-[Linear classification — slides](Slides/Week_03%20-%20Slides.pptx)
+[Linear classification — slides](Slides/Week_03%20-%20Slides.pptx) · [PDF](Slides/Week_03%20-%20Slides.pdf)
