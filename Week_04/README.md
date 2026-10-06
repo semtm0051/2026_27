@@ -11,3 +11,7 @@ The Week 4 lab applies PyTorch to linear classification.
 ## Lecture notes
 
 [Neural networks](Notes/Week_04%20-%20Neural%20Networks.pdf)
+
+## Lecture slides
+
+[Neural networks — slides](Slides/Week_04%20-%20Slides.pptx) · [PDF](Slides/Week_04%20-%20Slides.pdf)
