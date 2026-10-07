@@ -12,7 +12,7 @@ Here is the curriculum for the first five weeks.
 | 2 | PyTorch | Linear regression |
 | 3 | Linear regression | Linear classification |
 | 4 | Linear classification | Neural networks |
-| 5 | Neural networks 1 | Backpropagation |
+| 5 | Neural networks 1 | [Backpropagation](Week_05/Notes/Week_05%20-%20Backpropagation.pdf) |
 | 7 | Neural networks 2 | PCA and ICA - the structure of data |
 | 8 | PCA and ICA | Autoencoders of all sorts |
 | 9 | Autoencoders| CNNs, RNNs and transformers|
