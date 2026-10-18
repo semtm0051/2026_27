@@ -2,7 +2,7 @@
 
 ## Lab
 
-The Week 5 lab compares affine and neural-network classifiers on the same noisy XOR dataset. In this notebook, you implement and fit the network, plot its empirical loss and mistakes, and inspect its decision boundaries and learned features.
+The Week 5 lab compares affine and neural-network classifiers on the same noisy XOR dataset. Start by implementing and fitting a network with two hidden neurons, as in the lecture. Compare the ideal XOR inputs with the noisy observations, then widen the network to 100 hidden neurons and compare empirical losses, mistakes and decision boundaries.
 
 ### Neural networks in PyTorch
 
