@@ -9,3 +9,7 @@ The Week 5 lab compares affine and neural-network classifiers on a noisy XOR dat
 ## Lecture notes
 
 [Backpropagation](Notes/Week_05%20-%20Backpropagation.pdf)
+
+## Lecture slides
+
+[Backpropagation — slides](Slides/Week_05%20-%20Slides.pptx) · [PDF](Slides/Week_05%20-%20Slides.pdf)
