@@ -8,16 +8,16 @@ Here is the curriculum for the first five weeks.
 
 | Week | Lab | Lecture |
 |------|-----|---------|
-| 1 | Python refresher + Matplotlib | Introductory mathematical material |
-| 2 | PyTorch | Linear regression |
-| 3 | Linear regression | Linear classification |
-| 4 | Linear classification | Neural networks |
-| 5 | Neural networks 1 | Backpropagation |
+| [1](Week_01/) | Python refresher + Matplotlib | Introductory mathematical material |
+| [2](Week_02/) | PyTorch | Linear regression |
+| [3](Week_03/) | Linear regression | Linear classification |
+| [4](Week_04/) | Linear classification | Neural networks |
+| [5](Week_05/) | Neural networks 1 | Backpropagation |
 | 7 | Neural networks 2 | PCA and ICA - the structure of data |
 | 8 | PCA and ICA | Autoencoders of all sorts |
 | 9 | Autoencoders| CNNs, RNNs and transformers|
-| 10 | Large Vision Model Demo | Large Vision Model |
-| 11 | Large Language Model Demo | Large Language Model |
+| [10](Week_10/) | Large Vision Model Demo | Large Vision Model |
+| [11](Week_11/) | Large Language Model Demo | Large Language Model |
 
 More to come!
 
