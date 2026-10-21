@@ -4,7 +4,7 @@ This repository includes one folder for each week with material added as we go a
 
 ## Curriculum
 
-Here is the curriculum for the first five weeks.
+Here is the course curriculum.
 
 | Week | Lab | Lecture |
 |------|-----|---------|
