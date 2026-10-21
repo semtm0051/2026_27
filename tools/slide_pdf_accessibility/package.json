@@ -1,8 +1,0 @@
-{
-  "name": "course-slide-pdf-accessibility",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "speech-rule-engine": "4.1.4"
-  }
-}
