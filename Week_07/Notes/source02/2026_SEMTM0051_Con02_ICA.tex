@@ -31,7 +31,10 @@ difficult to explain, or, rather, the need for ICA is easy enough to
 explain but the problem itself is a difficult one because there isn't
 really a good, well defined, algorithm for finding the independent
 components. Like PCA, it is useful to think a bit about it and to
-learn a bit about what it does, but out treatment is going to be a bit vague.
+learn a bit about what it does, but out treatment is going to be a bit
+vague. The real message is to think about how things are represented,
+how changing how data is encoded as a vector, or set of activations
+over nodes, can disentangle its structure.
 
 \begin{figure}[b]
   \centering
@@ -68,6 +71,126 @@ ginger or a little. This is the situation we are cartooning in
 Fig.~\ref{fig:pca-ica}ICA, the $x$-axis represents the amount of
 garlic, the $y$-axis is the amount of ginger and the dots are
 recipies, the two red lines pick out the two different cuisines.
+
+This is often when ICA is useful, there is a choice, here, what sort
+of cuisine, and then a continuous process whose details depends on the
+discrete choice, here, the amount of ginger and garlic. In this case
+the axes, horizontal for Italian food, along $x=y$ for Indian,
+represent the \textsl{independent components} in recipe space.
+
+\subsection*{fastICA}
+
+I mentioned that we weren't going to look at how to do ICA in any
+detail. There are basically two main algorithms, \textsl{infomax} and
+\textsl{fastICA}. The infomax algorithm is extremely elegant, using
+ideas from information theory in a tour-de-force of cunning
+computation to produce a well-motivated approach to finding
+independent component. However, fastICA is the more popular algorithm,
+partly because it is fast, partly because the team who developed it
+put a lot of effort into producing nice, optimized, robust,
+implementations in lots of languages and finally, I think it helps
+that the overall reason the algorithm works is less elegant that
+infomax but easier to explain!
+
+The idea behind fastICA is that mixtures of random processes tend to
+be Gaussian. There is, in fact, a theorem called the \textsl{Central
+  Limit Theorem} that tells us in a precise way that in precise
+circumstances that there is a sense in which
+\begin{equation}
+  S = \sum_n \frac{X_1+X_2+\ldots+X_n}{n}
+\end{equation}
+tends towards a random variable with a Gaussian distribution as $n$
+becomes large when the $X_i$ are independent identically distributed
+random variables. The theorem gives means for `a sense in which',
+`tends towards' and `becomes large'. However, the precise details of
+the Central Limit Theorem doesn't concern us, what is important is a
+vague lesson we can learn from it: adding random things up usually
+gives us something that is more like a Gaussing than the things
+themselves.
+
+Carrying on with our recipe analogy wouldn't be impossible but it
+might be a bit confusing! Lets consider a more classic example of when
+ICA is useful and, in fact, one of the main places it is used. This is
+the \textsl{cocktail party problem}. Imagine you are listening in to
+two people, you and these people might be at a cocktail party, this
+sounds unlikley in real life, do people still have cocktail parties,
+but this is just a story. The two people are in different positions
+and so sound of their voices is combined when it enters your ear as
+some linear combination of each, the linear weights depend on how far
+from your ear they are. Each voice changes amplitude independently,
+the ear hears a combination of the two. In the way this story is told,
+you actually have access to two different linear combinations, one for
+each ear. So, there are two independent sources, each of the two
+people and you have access to two different linear combinations, one
+for each ear. The job of ICA is to allow you to seperate the two
+combined signals into two different signals, one for each speaker.
+
+This is completely unrealistic, we are very good at solving the
+cocktail party problem but we don't solve it by relying on the small
+different in amplitude in the signals entering each ear, we use a
+whole set of techniques and it probably helps that our ears are such
+an odd shape, but this is just a story and, as mentioned there are
+version of the cocktail party problem where we do have a set of
+observed signals corresponding to different weighted sums and where we
+do use fastICA.
+
+So, lets imagine we are in two dimensions and there are two random
+variable, $X_1$ and $X_2$. These are independent, potentially
+different processes, the two voices in our example, and for this to
+work they aren't Gaussian. Now lets mix them:
+\begin{equation}
+  \left(\begin{array}{c}Y_1\\Y_2\end{array}\right)=M \left(\begin{array}{c}X_1\\X_2\end{array}\right)
+\end{equation}
+where $Y_1$ and $Y_2$ are the values we actually observe, the sounds
+in our two ears, and $M$ is a mixing matrix, a $2\times 2$
+matrix. This means $Y_1=w_{11}X_1+w_{12}X_2$ and
+$Y_2=w_{21}X_1+w_{22}X_2$. Thus, the things we observe are more
+Gaussian than the original variables. The idea is to find an unmixing
+matrix $W$ so
+\begin{equation}
+  \left(\begin{array}{c}Z_1\\Z_2\end{array}\right)=W \left(\begin{array}{c}Y_1\\Y_2\end{array}\right)=WM\left(\begin{array}{c}X_1\\X_2\end{array}\right)
+\end{equation}
+Now if $W=M^{-1}$ then $Z_i=X_i$ and we will have found the original
+unmixed variables.  Now the clever thing is that the closer $W$ is to
+being the $M^{-1}$ the less Gaussian we might expect $Z_1$ and $Z_2$
+to be, the closer each is to being just one of the $X_i$ the less it
+is a mixture. The idea behind fastICA is to measure how Gaussian the
+$Z_i$ are and then vary the coefficients of $W$ to minimize whatever
+measure of ``Gaussian-ness'' is being used.
+
+
+\subsection*{A language example}
+
+We are going to look at a slightly complicated example, but I think a
+fun one. It is complicated because it introduces another technology
+called \textsl{word2vec}. The purpose word2vec is to map words to
+vectors. The original ``skipgram'' word2vec approach was surprising
+when it was introduced, it arrived soon after AlexNet and was part of
+the revival of interest in neural networks. It is very different to
+AlexNet though since it used a surprisingly shallow.
+
+The idea is simple: take a big list of all the words in your
+dictionary, a 10,000 vector for example, remember this was 15 years
+ago. Give entries in this vector all the value zero. Now pick a word
+in a text and turn the corresponding entry in your vector to one. Now
+map your big vector to a smaller continuous vector, say
+300-dimensional which we will call the latent space with the
+activation pattern of that vector for your word just some vector in
+the latent space $\mathbf{v}[$word$]$ and then map that vector to
+another big vector corresponding to all words. This involves two big
+matrixes $10000\times300$ matrix mapping the input to the latent space
+and $300\times 10000$ to map to the output. Finally map the output
+vector values to probabilities and train the two big matrices on an
+objective based on the idea that these probabilities tell us which
+words are near in the text to input word. Near here could mean
+``within eight-wrods either side'' or ``in the same sentence''. After
+we've done all this the latent space vectors, the
+$\mathbf{v}[$word$]$s, are the things we wanted, vectors representing
+words.
+
+
+
+
 
 \end{document}
 
