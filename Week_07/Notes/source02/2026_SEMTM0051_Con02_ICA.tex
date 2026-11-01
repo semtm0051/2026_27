@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts, epsfig}
+\usepackage[authoryear]{natbib}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\lfoot{\texttt{semtm0051.github.io} }
+\lhead{Independent Component Analysis - Conor}
+\rhead{\thepage}
+\cfoot{}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{ifthen}
+\newboolean{nopics}
+\setboolean{nopics}{true}
+
+
+\begin{document}
+
+\section*{Independent Component Analysis.} 
+
+Principal Component Analysis is everywhere and it is easy to describe;
+Independent Component Analysis (ICA) is often more useful but
+difficult to explain, or, rather, the need for ICA is easy enough to
+explain but the problem itself is a difficult one because there isn't
+really a good, well defined, algorithm for finding the independent
+components. Like PCA, it is useful to think a bit about it and to
+learn a bit about what it does, but out treatment is going to be a bit vague.
+
+\begin{figure}[b]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \textbf{PCA}\\[2pt]
+    \includegraphics[width=\linewidth]{pca.pdf}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \textbf{ICA}\\[2pt]
+    \includegraphics[width=\linewidth]{ica.pdf}
+  \end{minipage}
+  \caption{Left: PCA finds orthogonal axes ordered by variance. Right: ICA finds
+    the (here non-orthogonal) directions along which the data are independent.}
+  \label{fig:pca-ica}
+\end{figure}
+
+
+The motivation is straight forward and illustrated in
+Fig.~\ref{fig:pca-ica}. It is common for the distribution of the data
+suits PCA. This is what happens if the distribution is a multi-variate
+Gaussian and for all sort of reasons this is a common distribution for
+data; even when the data isn't precisely a multi-variate Gaussian, it
+looks a bit like one. However, it isn't the only possibility. Imagine
+looking at recipies for example and measuring how much ginger and
+garlic they contain. If the recipie is Italian the amount of garlic
+will vary but there will be hardly any ginger; for Indian recipies
+there will be garlic and ginger and, in fact, they will be
+proportional, the more garlic, the more ginger; indeed they will have
+roughly the same amount by weight, so some dishes will have lots of
+garlic and some little, but those same dishes will also have a lot of
+ginger or a little. This is the situation we are cartooning in
+Fig.~\ref{fig:pca-ica}ICA, the $x$-axis represents the amount of
+garlic, the $y$-axis is the amount of ginger and the dots are
+recipies, the two red lines pick out the two different cuisines.
+
+\end{document}
+
