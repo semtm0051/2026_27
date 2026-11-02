@@ -77,8 +77,8 @@ def find_component(probe):
 
 # pick two axes by naming a few words that should lie on each
 AXIS_A = ["soup", "sauce", "cheese", "chicken", "bread"]
-AXIS_B = ["football", "soccer", "rugby", "goal", "striker"]
-LABEL_A, LABEL_B = "food", "football"
+AXIS_B = ["album", "songs", "band", "guitar", "vocals"]
+LABEL_A, LABEL_B = "food", "music"
 
 a, b = find_component(AXIS_A), find_component(AXIS_B)
 print(f"\nscatter axes: ic{a} ({LABEL_A}) and ic{b} ({LABEL_B})")

@@ -60,9 +60,9 @@ suits PCA. This is what happens if the distribution is a multi-variate
 Gaussian and for all sort of reasons this is a common distribution for
 data; even when the data isn't precisely a multi-variate Gaussian, it
 looks a bit like one. However, it isn't the only possibility. Imagine
-looking at recipies for example and measuring how much ginger and
-garlic they contain. If the recipie is Italian the amount of garlic
-will vary but there will be hardly any ginger; for Indian recipies
+looking at recipes for example and measuring how much ginger and
+garlic they contain. If the recipe is Italian the amount of garlic
+will vary but there will be hardly any ginger; for Indian recipes
 there will be garlic and ginger and, in fact, they will be
 proportional, the more garlic, the more ginger; indeed they will have
 roughly the same amount by weight, so some dishes will have lots of
@@ -188,9 +188,78 @@ we've done all this the latent space vectors, the
 $\mathbf{v}[$word$]$s, are the things we wanted, vectors representing
 words.
 
+The thing that makes this useful is that it appears to produce vectors
+that represent aspects of word meaning. Again, this is less remarkable
+now; we have other more sophisticated transformer based approaches for
+representing the meanings of words and, indeed, this is one of the
+things that is happening in the layers of the transformers used in
+large language models. Here, we are just introducing it as an example
+of how ICA can pull out the structure of data and it is being used as
+an example precisely to familiarize you with the way representation
+works, the way neural networks map things from one vector to another
+in ways that represent and organize the properties of the things in
+question. Anyway, in the case of word2vec the original papers showed off about a sort of ``Euclideanization'' of the words, relationships like:
+\begin{equation}
+  \mathbf{v}(\text{Mozart})+[\mathbf{v}(\text{scientist})-\mathbf{v}(\text{Einstein})]\approx\mathbf{v}(\text{violinist})
+\end{equation}
+These examples where often highly cherry-picked, but it was still cool
+at the time!
 
+We won't use skipgram. It comes with a nice explaination but better
+approaches were found afterwards; instead we use a fairly standard set
+call \textsl{GloVe}; GloVe actually finds similar vectors to skipgram,
+100-dimensional in the version we use, we won't go into the
+details. Suffice to say, GloVe maps words to vectors and the vectors
+are easily downloaded from the internet. We are going to do ICA on
+GloVe.
 
+The idea is to take the GloVe vectors for the twenty thousand or so
+most common words, leaving out the hundred very commonest ones, words
+like `the' and `of', which turn up everywhere and so tell us very
+little, and to treat each word's vector as a data point, exactly like
+the recipes in Fig.~\ref{fig:pca-ica}, except that now there are 100
+dimensions rather than two. We run fastICA on these points, asking for
+100 components, so that each word gets a new set of coordinates, one
+for each independent component. To see what a component is `about' we
+just list the words with the largest values along it. If we do the
+same thing with PCA the lists are a bit of a jumble: a few of the
+principal components are coherent, but most mix unrelated things, so
+one, for example, has Ingushetia, the Sensex stock index, the PKK and
+landslides. The independent components are much cleaner, most of them
+pick out a single category you would recognise, and if we plot the
+words against two of them, as in Fig.~\ref{fig:ica-words}, we see the
+same two-armed picture as the recipes, with food words along one axis,
+music words along the other and almost nothing in between: most words
+are mostly about one thing. Here are five of the components, with the
+words that score highest on each:
+\begin{itemize}
+\item \textbf{cooking:} teaspoon, tablespoons, sauce, garlic, chopped,
+  onion, butter
+\item \textbf{music:} albums, vocals, songs, band, guitar, jazz
+\item \textbf{stock markets:} Topix, DAX, KOSPI, FTSE, Nikkei, Nasdaq
+\item \textbf{computing:} desktop, Macintosh, Android, USB, software,
+  server
+\item \textbf{injuries:} spinal, ligament, knee, ankle, tendon,
+  fracture
+\end{itemize}
+Not all the components are topics like these, some are about grammar
+or style rather than subject matter, there is one, for example, made
+up of intensifiers, incredibly, utterly, extremely, enormously, and
+another of verbs ending in `-ing'; and a few are junk. Nonetheless, it
+is striking that a method which knows nothing about language, which
+only looks for directions along which the data is as un-Gaussian as
+possible, pulls out so much of the structure of meaning.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.48\textwidth]{ica_words.pdf}
+  \caption{GloVe word vectors plotted against two of the independent
+    components found by fastICA. Most words sit near the origin; words
+    about cooking lie along the horizontal axis and words about music
+    along the vertical one, with very few words scoring highly on
+    both.}
+  \label{fig:ica-words}
+\end{figure}
 
 \end{document}
 
