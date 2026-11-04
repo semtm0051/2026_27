@@ -13,7 +13,7 @@ Here is the course curriculum.
 | [3](Week_03/) | Linear regression | Linear classification |
 | [4](Week_04/) | Linear classification | Neural networks |
 | [5](Week_05/) | Neural networks 1 | Backpropagation |
-| 7 | Neural networks 2 | PCA and ICA - the structure of data |
+| [7](Week_07/) | Coursework | PCA and ICA - the structure of data |
 | 8 | PCA and ICA | Autoencoders of all sorts |
 | 9 | Autoencoders| CNNs, RNNs and transformers|
 | [10](Week_10/) | Large Vision Model Demo | Large Vision Model |
