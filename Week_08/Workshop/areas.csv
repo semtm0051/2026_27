@@ -1,0 +1,125 @@
+area,name,nation,lat,lon,approx_respondents
+AB,Aberdeen,Scotland,57.178,-2.183,95
+AL,St Albans,England,51.766,-0.304,42
+B,Birmingham,England,52.473,-1.894,302
+BA,Bath,England,51.204,-2.434,131
+BB,Blackburn,England,53.787,-2.32,81
+BD,Bradford,England,53.806,-1.782,110
+BH,Bournemouth,England,50.737,-1.894,88
+BL,Bolton,England,53.579,-2.409,65
+BN,Brighton,England,50.827,-0.15,150
+BR,Bromley,England,51.395,0.044,54
+BS,Bristol,England,51.458,-2.593,272
+BT,Belfast (all Northern Ireland),Northern Ireland,54.65,-6.6,242
+CA,Carlisle,England,54.73,-3.0,60
+CB,Cambridge,England,52.208,0.167,141
+CF,Cardiff,Wales,51.517,-3.298,230
+CH,Chester,England,53.323,-3.033,201
+CM,Chelmsford,England,51.75,0.378,110
+CO,Colchester,England,51.888,0.916,46
+CR,Croydon,England,51.362,-0.102,46
+CT,Canterbury,England,51.258,1.234,82
+CV,Coventry,England,52.392,-1.493,210
+CW,Crewe,England,53.166,-2.471,73
+DA,Dartford,England,51.444,0.169,40
+DD,Dundee,Scotland,56.49,-2.918,48
+DE,Derby,England,52.915,-1.492,129
+DG,Dumfries,Scotland,54.937,-3.919,16
+DH,Durham,England,54.838,-1.578,68
+DL,Darlington,England,54.526,-1.6,52
+DN,Doncaster,England,53.555,-0.686,118
+DT,Dorchester,England,50.749,-2.46,48
+DY,Dudley,England,52.47,-2.145,63
+E,East London,England,51.539,-0.015,122
+EC,East Central London,England,51.517,-0.094,10
+EH,Edinburgh,Scotland,55.938,-3.196,212
+EN,Enfield,England,51.672,-0.069,38
+EX,Exeter,England,50.786,-3.566,110
+FK,Falkirk,Scotland,56.106,-3.877,46
+FY,Blackpool,England,53.826,-3.03,40
+G,Glasgow,Scotland,55.861,-4.262,242
+GL,Gloucester,England,51.856,-2.194,168
+GU,Guildford,England,51.246,-0.729,134
+GY,Guernsey,Crown Dependency,49.46,-2.58,7
+HA,Harrow,England,51.587,-0.332,42
+HD,Huddersfield,England,53.643,-1.791,80
+HG,Harrogate,England,53.998,-1.534,35
+HP,Hemel Hempstead,England,51.725,-0.717,127
+HR,Hereford,England,52.068,-2.714,24
+HS,Outer Hebrides,Scotland,57.788,-7.131,2
+HU,Hull,England,53.757,-0.344,85
+HX,Halifax,England,53.717,-1.883,30
+IG,Ilford,England,51.584,0.075,40
+IM,Isle of Man,Crown Dependency,54.23,-4.53,22
+IP,Ipswich,England,52.185,1.143,129
+IV,Inverness,Scotland,57.607,-5.074,47
+JE,Jersey,Crown Dependency,49.21,-2.13,3
+KA,Kilmarnock,Scotland,55.584,-4.655,34
+KT,Kingston upon Thames,England,51.368,-0.305,104
+KW,Kirkwall (Orkney and Caithness),Scotland,58.886,-3.066,5
+KY,Kirkcaldy,Scotland,56.174,-3.175,68
+L,Liverpool,England,53.425,-2.931,163
+LA,Lancaster,England,54.153,-2.879,79
+LD,Llandrindod Wells,Wales,52.198,-3.346,10
+LE,Leicester,England,52.636,-1.128,146
+LL,Llandudno,Wales,53.132,-3.993,89
+LN,Lincoln,England,53.233,-0.466,52
+LS,Leeds,England,53.814,-1.55,309
+LU,Luton,England,51.889,-0.472,46
+M,Manchester,England,53.479,-2.253,267
+ME,Medway,England,51.335,0.536,96
+MK,Milton Keynes,England,52.049,-0.728,135
+ML,Motherwell,Scotland,55.781,-3.975,24
+N,North London,England,51.588,-0.113,133
+NE,Newcastle upon Tyne,England,54.997,-1.607,250
+NG,Nottingham,England,52.983,-1.146,227
+NN,Northampton,England,52.283,-0.821,126
+NP,Newport,Wales,51.678,-3.01,98
+NR,Norwich,England,52.64,1.286,100
+NW,North West London,England,51.55,-0.202,76
+OL,Oldham,England,53.558,-2.126,95
+OX,Oxford,England,51.768,-1.27,200
+PA,Paisley,Scotland,55.925,-5.7,44
+PE,Peterborough,England,52.66,-0.027,128
+PH,Perth,Scotland,56.669,-3.826,18
+PL,Plymouth,England,50.401,-4.266,94
+PO,Portsmouth,England,50.809,-1.088,103
+PR,Preston,England,53.718,-2.715,122
+RG,Reading,England,51.415,-1.018,197
+RH,Redhill,England,51.114,-0.193,121
+RM,Romford,England,51.56,0.194,35
+S,Sheffield,England,53.377,-1.445,268
+SA,Swansea,Wales,51.755,-4.267,130
+SE,South East London,England,51.468,-0.05,180
+SG,Stevenage,England,51.934,-0.166,94
+SK,Stockport,England,53.387,-2.136,178
+SL,Slough,England,51.526,-0.613,58
+SM,Sutton,England,51.367,-0.185,30
+SN,Swindon,England,51.548,-1.827,90
+SO,Southampton,England,50.927,-1.38,154
+SP,Salisbury,England,51.073,-1.799,72
+SR,Sunderland,England,54.902,-1.391,24
+SS,Southend-on-Sea,England,51.567,0.63,61
+ST,Stoke-on-Trent,England,52.992,-2.145,108
+SW,South West London,England,51.466,-0.159,213
+SY,Shrewsbury,England,52.696,-2.97,59
+TA,Taunton,England,51.047,-3.037,52
+TD,Galashiels (Scottish Borders),Scotland,55.674,-2.462,14
+TF,Telford,England,52.686,-2.467,41
+TN,Tonbridge,England,51.124,0.421,97
+TQ,Torquay,England,50.457,-3.595,47
+TR,Truro,England,50.183,-5.23,34
+TS,Teesside,England,54.571,-1.245,98
+TW,Twickenham,England,51.453,-0.376,98
+UB,Southall,England,51.528,-0.413,32
+W,West London,England,51.514,-0.159,98
+WA,Warrington,England,53.396,-2.595,139
+WC,West Central London,England,51.518,-0.122,8
+WD,Watford,England,51.666,-0.4,45
+WF,Wakefield,England,53.694,-1.518,116
+WN,Wigan,England,53.541,-2.64,66
+WR,Worcester,England,52.181,-2.224,77
+WS,Walsall,England,52.637,-1.969,68
+WV,Wolverhampton,England,52.583,-2.131,57
+YO,York,England,54.053,-0.957,144
+ZE,Shetland,Scotland,59.876,-1.25,3
