@@ -138,7 +138,8 @@ store information, reducing the number of dimension need not mean
 disgarding information. However, what neural network learning learns
 tends not to exploit things like that; thanksfully, the effectiveness
 of deep learning, its ability to generalize, relies in part on it not
-performing that sort of annoying trick.}.
+performing that sort of annoying trick.}. The reduction of the
+autoencoder to PCA is outlined in the appendix.
 
 The best thing is to look at an example and before doing that it is
 useful to introduce MNIST; MNIST is the `hello world' dataset for
@@ -652,17 +653,14 @@ sitting at the origin.
 \end{figure}
 
 What we have paid for with the blurring is a latent space without
-holes, and this is what Fig.~\ref{fig:vae_lines},
-Fig.~\ref{fig:vae_circle} and Fig.~\ref{fig:vae_grid} are intended to
-show. In Fig.~\ref{fig:vae_lines} we walk in a straight line from one
-cluster to another, from the zeros to the twos and from the ones to
-the zeros, decoding as we go, and the thing to notice is that the path
-decodes to digits throughout; in the autoencoder a journey like this
-would cross one of the gaps, where the decoder had never been trained
-and the reconstruction did not look like anything. In the same way
+holes, and this is what Fig.~\ref{fig:vae_circle} and
+Fig.~\ref{fig:vae_grid} are intended to show. In the same way
 Fig.~\ref{fig:vae_circle} and Fig.~\ref{fig:vae_grid} repeat for the
 VAE what we did in Fig.~\ref{fig:circle} and Fig.~\ref{fig:grid} for
-the autoencoder, and the complaint we made about Fig.~\ref{fig:grid},
+the autoencoder,  the thing to notice is that the circle path
+decodes to digits throughout; in the autoencoder a journey like this
+would cross one of the gaps, where the decoder had never been trained
+and the reconstruction did not look like anything. As for the grid, the complaint we made about Fig.~\ref{fig:grid},
 that the change from one digit to another did not `stick' to the space
 of plausible digits, has largely been answered. It is worth saying
 again why this has happened: every training image is decoded from a
@@ -670,6 +668,7 @@ slightly different point each time it is presented, so the decoder is
 trained on the whole neighbourhood of each image, not just on a single
 point, and the KL term has pulled all these neighbourhoods together
 around the origin so that they overlap and cover the space.
+
 
 \begin{figure}
 \begin{center}
@@ -695,6 +694,64 @@ the same thing with the ordinary autoencoder would not work, for one
 thing we would not know what distribution to sample from, and for
 another, as we saw in Fig.~\ref{fig:grid}, much of the latent space
 does not decode to a digit at all.
+
+\section*{Appendix: the linear autoencoder and PCA}
+
+It was claimed above that an autoencoder is a non-linear version of
+principal component analysis; the way to see this is to take the
+non-linearity away and check that what is left is PCA. So imagine an
+autoencoder with no activation functions, with the $L^2$ error, and,
+to keep things simple, with data that has had its mean subtracted. The
+encoder is then just a matrix, $\mathbf{z}=W\mathbf{x}$, taking the
+$n$-dimensional input to a $k$-dimensional latent space, and the
+decoder is another matrix, $\hat{\mathbf{x}}=V\mathbf{z}$, taking it
+back; adding more layers changes nothing since a product of matrices
+is a matrix. The loss, summed over the data, is
+\begin{equation}
+  L=\sum_{\text{data}}\|\mathbf{x}-VW\mathbf{x}\|^2
+\end{equation}
+
+Now think about what the decoder can produce. Whatever $\mathbf{z}$
+is, $V\mathbf{z}$ is a combination of the $k$ columns of $V$, so every
+reconstruction lies in a flat $k$-dimensional plane through the origin
+of the $n$-dimensional data space, and choosing $V$ amounts to
+choosing that plane. Given the plane, the best the encoder can do for
+a data point is to pick the $\mathbf{z}$ that decodes to the nearest
+point on it, and the nearest point is the one directly `below', the
+perpendicular projection. So the whole problem comes down to a
+geometrical one: find the $k$-dimensional plane that the data lie
+closest to, in the sense that the sum of the squared perpendicular
+distances is as small as possible.
+
+This is where Pythagoras comes in. For each data point the squared
+distance from the origin is the squared length of its projection on to
+the plane plus the squared distance from the plane,
+\begin{equation}
+  \|\mathbf{x}\|^2=\|\hat{\mathbf{x}}\|^2+\|\mathbf{x}-\hat{\mathbf{x}}\|^2
+\end{equation}
+and the left hand side is fixed by the data, it does not depend on the
+plane. So making the distances to the plane small is the same thing as
+making the projections long: the plane that minimizes the
+reconstruction error is the plane that keeps as much of the variance
+of the data as possible. That is the definition of PCA; the plane is
+the one spanned by the first $k$ principal components, and the
+reconstruction error that is left is the variance in all the other
+components. It can also be shown that this is the only minimum that
+gradient descent can get stuck in, so training the linear autoencoder
+does find it.
+
+There is one caveat, the autoencoder finds the plane but not the
+components themselves. If $A$ is any invertible $k\times k$ matrix
+then replacing $W$ with $AW$ and $V$ with $VA^{-1}$ leaves $VW$, and
+therefore the loss, unchanged, so the latent coordinates are some
+arbitrary, stretched and skewed, set of axes for the principal plane,
+they are not perpendicular and they are not ordered by how much
+variance they explain. Finally, this tells us what the non-linearity
+is for: with activation functions the decoder is no longer restricted
+to a flat plane, it can map the latent space to a curved
+$k$-dimensional surface that bends to follow the data, and the encoder
+learns to send each point to somewhere near the closest point on that
+surface.
 
 
 \end{document}
