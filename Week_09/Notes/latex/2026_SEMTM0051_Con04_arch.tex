@@ -217,8 +217,6 @@ scheme each stage only looks at a small neighbourhood of the stage
 before, but because the stages stack, what each unit ``sees'' of the
 original image grows as we go up.
 
-This was widely believed to be the scheme used in the brain.
-
 \begin{figure}
 \centering
 \begin{tikzpicture}[spike/.style={thick,blue!70}]
@@ -286,8 +284,44 @@ This was widely believed to be the scheme used in the brain.
 \end{tikzpicture}
 \caption{Hubel and Wiesel (1959) recorded single neurons in the visual
   cortex of anaesthetised cats: each cell fires for a bar at one
-  orientation, in one small patch of the visual field.}
+  orientation, in one small patch of the visual field. If the bar was somewhere else it wouldn't cause neural activity in that particular cell and the activity it causes depends on orientation. This is very much a schematic but if you look around for it there is a film of them performing the original experiment. \label{fig:h7w}}
 \end{figure}
+
+This was widely believed to be the scheme used in the brain! In the
+late fifties Hubel and Wiesel performed a series of experiments using
+anaesthetised cats, using electrodes they recorded the activity of
+cells in the primary visual cortex, the part of the brain that deals
+with images in a fairly raw form. This is, perhaps surprisingly, at
+the back of the brain, as far from the eye as it could easily be; the
+visual signal has come from the eye and gone through thalamus where it
+undergoes some denoising and adjustment to correct for overall
+brightness, the signal then goes to visual cortex.
+
+In the primary visual cortex there there are cells, called simple
+cells, that respond to the input in the way illustrated in
+Fig.~\ref{fig:h7w}; the visual cortex in many mammals, certainly is
+lots of mammals that hunt and have eyes on the front, or front-ish, of
+their head, is arranged topographically, different parts deal with
+different parts of the visual field and they are laid out sort of
+logically, with nearby cells corresponding to nearby parts of the
+field. These cells seem to be activated by edges, and are arranged in
+a circle, often called a pinwheel, for each location in the field, as
+you go around the pinwheel the prefered direction of the edge
+rotates. In this way the primary visual cortex seems to do just what
+we imagined above, it goes beyond the individual pixes, in this case
+the denoised and mildly aggregated inputs from individual retinal
+cells and finds local features and there is a mathematical
+explaination why edges are the right thing to code for.
+
+The rest of the story seems to sort of hold, cells along the visual
+pathway respond to more complex shapes and there are eventually cells
+that respond to specific objects; however, as with anything in the
+brain, this version of the story turns out to be complicated and, of
+course, we need to bear in mind that the brain isn't a deep network;
+it only takes a few hundred milliseconds to recognize things and at
+the speed the brain operates, this does allow for a huge number of
+layers.
+
 
 
 
