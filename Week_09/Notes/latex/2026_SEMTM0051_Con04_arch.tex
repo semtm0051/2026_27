@@ -322,7 +322,157 @@ it only takes a few hundred milliseconds to recognize things and at
 the speed the brain operates, this does allow for a huge number of
 layers.
 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[neuron/.style={circle,draw,thick,minimum size=6mm,inner sep=0pt,fill=red!25}]
 
+  \node[neuron] (h1) at (4.0,1.97) {};
+  \onslide<2->{\node[neuron] (h2) at (4.0,0.03) {};}
+
+  % ---------------- connections (drawn first, so the image sits on top)
+  \foreach \i in {0,...,7}
+    \foreach \j in {0,...,7}
+      \draw[gray!25] (0.3*\i+0.15,-0.05+0.3*\j) -- (h1);
+  \foreach \j in {5,6,7} \draw[thick,blue!70] (0.75,-0.05+0.3*\j) -- (h1);
+  \onslide<2->{
+  \foreach \i in {0,...,7}
+    \foreach \j in {0,...,7}
+      \draw[gray!25] (0.3*\i+0.15,-0.05+0.3*\j) -- (h2);
+  \foreach \j in {0,1,2} \draw[thick,orange!80!black] (1.95,-0.05+0.3*\j) -- (h2);}
+
+  % ---------------- image: 8x8 pixels
+  \foreach \i in {0,...,7}
+    \foreach \j in {0,...,7}
+      \draw[gray!40,fill=gray!8] (0.3*\i,-0.2+0.3*\j) rectangle ++(0.3,0.3);
+  \foreach \j in {5,6,7} \fill[black] (0.6,-0.2+0.3*\j) rectangle ++(0.3,0.3);
+  \draw[thick,blue!70] (0.3,1.3) rectangle (1.2,2.2);
+  \onslide<2->{
+  \foreach \j in {0,1,2} \fill[black] (1.8,-0.2+0.3*\j) rectangle ++(0.3,0.3);
+  \draw[thick,orange!80!black] (1.5,-0.2) rectangle (2.4,0.7);}
+  \node[below] at (1.2,-0.25) {image};
+
+  % ---------------- weights of unit 1
+  \begin{scope}[shift={(5.0,1.25)}]
+    \foreach \i in {0,...,7}
+      \foreach \j in {0,...,7}
+        \draw[gray!40,fill=gray!8] (0.18*\i,0.18*\j) rectangle ++(0.18,0.18);
+    \foreach \j in {5,6,7} {
+      \fill[blue!20] (0.18,0.18*\j) rectangle ++(0.18,0.18);
+      \fill[blue!70] (0.36,0.18*\j) rectangle ++(0.18,0.18);
+      \fill[blue!20] (0.54,0.18*\j) rectangle ++(0.18,0.18);}
+    \node[right] at (1.5,0.72) {weights of unit 1};
+  \end{scope}
+  \draw[gray] (h1) -- (4.95,1.97);
+
+  % ---------------- weights of unit 2
+  \onslide<2->{
+  \begin{scope}[shift={(5.0,-0.69)}]
+    \foreach \i in {0,...,7}
+      \foreach \j in {0,...,7}
+        \draw[gray!40,fill=gray!8] (0.18*\i,0.18*\j) rectangle ++(0.18,0.18);
+    \foreach \j in {0,1,2} {
+      \fill[orange!25] (0.9,0.18*\j) rectangle ++(0.18,0.18);
+      \fill[orange!80!black] (1.08,0.18*\j) rectangle ++(0.18,0.18);
+      \fill[orange!25] (1.26,0.18*\j) rectangle ++(0.18,0.18);}
+    \node[right] at (1.5,0.72) {weights of unit 2};
+  \end{scope}
+  \draw[gray] (h2) -- (4.95,0.03);}
+
+\end{tikzpicture}
+\end{center}
+\caption{If the all-to-all network learns small local features it has
+  to learn the same features again and again for each location because
+  it has weights for each location. Here we are imagining we have a
+  unit, the blue one, that learns a bar in the upper right of the
+  visual field, shown on the left, the grid on the right represents
+  its weights. This unit can't also spot the bar in the bottom right;
+  this needs to also learn about bars and it needs its own weight. The
+  same feature has to be learned many times, once for each
+  location. The network doesn't exploit the idea the feature can
+  appear anywhere.\label{fig:all2all}}
+\end{figure}
+
+Now lets imagine how this would work in practice; the problem with
+all-to-all network, perhaps counterintuitively at first glance since
+an all-to-all network is homogeneous, is that it ignores the
+invariance structure of the image. If the first layer of the network
+is intended to learn small local features, we might expect these same
+local features to occur anywhere in the visual field, if an edge is
+likely to be worth learning in the upper left of the visual field it
+is probably going to need learning in the bottom right as well. This
+is illustrated in Fig.~\ref{fig:all2all} and is wasteful, the same
+thing gets learned again-and-again; the data is split across many
+different locations.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+  % ---------------- image: 8x8
+  \foreach \i in {0,...,7}
+    \foreach \j in {0,...,7}
+      \draw[gray!40,fill=gray!8] (0.3*\i,0.3*\j) rectangle ++(0.3,0.3);
+  \foreach \j in {5,6,7} \fill[black] (0.6,0.3*\j) rectangle ++(0.3,0.3);
+  \foreach \j in {0,1,2} \fill[black] (1.8,0.3*\j) rectangle ++(0.3,0.3);
+  \node[below] at (1.2,-0.05) {image};
+
+  % ---------------- the one filter
+  \begin{scope}[shift={(3.6,0.75)}]
+    \foreach \i in {0,1,2}
+      \foreach \j in {0,1,2}
+        \draw[gray!40,fill=gray!8] (0.3*\i,0.3*\j) rectangle ++(0.3,0.3);
+    \foreach \j in {0,1,2} {
+      \fill[violet!25] (0,0.3*\j) rectangle ++(0.3,0.3);
+      \fill[violet!80] (0.3,0.3*\j) rectangle ++(0.3,0.3);
+      \fill[violet!25] (0.6,0.3*\j) rectangle ++(0.3,0.3);}
+    \draw[thick,violet] (0,0) rectangle (0.9,0.9);
+    \node[below,align=center] at (0.45,-0.05) {one set\\of weights};
+  \end{scope}
+
+  % ---------------- feature map: 6x6
+  \begin{scope}[shift={(6.3,0.3)}]
+    \foreach \i in {0,...,5}
+      \foreach \j in {0,...,5}
+        \draw[gray!40,fill=gray!8] (0.3*\i,0.3*\j) rectangle ++(0.3,0.3);
+    \onslide<2->{\fill[violet!80] (0.3,1.5) rectangle ++(0.3,0.3);}
+    \onslide<3->{\fill[violet!80] (1.5,0) rectangle ++(0.3,0.3);}
+    \node[below] at (0.9,-0.05) {feature map};
+  \end{scope}
+
+  % ---------------- top-left application
+  \onslide<2->{
+  \draw[thick,violet] (0.3,1.5) rectangle (1.2,2.4);
+  \draw[violet,dashed] (1.2,2.4) -- (3.6,1.65);
+  \draw[violet,dashed] (1.2,1.5) -- (3.6,0.75);
+  \draw[violet,dashed] (4.5,1.65) -- (6.6,2.1);
+  \draw[violet,dashed] (4.5,0.75) -- (6.6,1.8);}
+  % ---------------- bottom-right application
+  \onslide<3->{
+  \draw[thick,violet] (1.5,0) rectangle (2.4,0.9);
+  \draw[violet,dashed] (2.4,0.9) -- (3.6,1.65);
+  \draw[violet,dashed] (2.4,0) -- (3.6,0.75);
+  \draw[violet,dashed] (4.5,1.65) -- (7.8,0.6);
+  \draw[violet,dashed] (4.5,0.75) -- (7.8,0.3);}
+\end{tikzpicture}
+\end{center}
+\caption{A cartoon of a convolutional network. Here there is a convolution layer that maps from the image to a feature map. The input to the convolution layer is a little patch of the image and this maps through the convolution layer to a node in the feature layer, the crucial point though is that convolution layer has the same in and out weights no matter where it is applied so it learns across all the examples of a feature and recognizes a feature no matter where it is and then `alerts' the node in the feature layer that codes for that location.\label{fig:conv}}
+\end{figure}
+
+The solution is to have a convolution layer, this is a small layer
+that is used as a map but is applied to different patches. It is
+easiest to describe for the first convolution layer where the input is
+the image itself, but in a CNN there are multiple layers and so the
+input might be another hidden layer. Anyway, as illustrated in
+Fig.~\ref{fig:conv}, the convolution layer doesn't map from the whole
+image, its input is a small patch in the image and the location of
+this patch determined where its output maps to, the convotion layer
+proves a parameterized and learnable map from local regions in the
+image to a point in the next layer, the feature space.
+
+In mathematical terms the convolution layer gives a map that looks like
+\[
+h^{c}_{ij}=\sigma\Big(\beta^{c}+\sum_{d=1}^{3}\,\sum_{k,l=0}^{r} w^{c}_{dkl}\;x^{d}_{i+k,\,j+l}\Big)
+\]
+where $h^c_{ij}$ gives the activation when the layer is applied to the patch anchored at $(i,j)$, it sums over the patch using the weights $w^c_{dkl}; $k$ and $l$ correspond to the nodes in the convolution layer and $x^d_{i+k,\, j+l}$ are the nodes that act as input. The $d$ index ranges of the three-dimensional colour space and $c$ allow from more that one convolution at each layer; so the convolutional layer will each patch and look for different features.
 
 
 \end{document}
